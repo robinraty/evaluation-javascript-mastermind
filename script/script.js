@@ -28,6 +28,7 @@ const gameHeader = document.querySelector(".gameHeader");
 
 const gameTitle = document.querySelector(".gameTitle");
 const gameSection = document.querySelector(".gameSection");
+const playAgainBtn = document.querySelector(".playAgainBtn");
 
 
 // =================================
@@ -37,24 +38,31 @@ const gameSection = document.querySelector(".gameSection");
 
 
 function randomSuiteCreator() {
-    
+    // const newColors = [...colors];
     for (let i = 0; i < colors.length; i++) {
         const randomIndex = Math.floor(Math.random() * 4)        
         randomSuite.push(colors[randomIndex])
+        
     }
     console.log(`random suite :`);
     console.log(randomSuite);
+    
+    // newColors.splice(colors[randomIndex],1)
 }
 
 // =================================
 // function checkGoodColorAndPosition : fonction de comparaison bonne couleur + bonne position
 // =================================
 
+// let alreadyFound = [];
+
 function checkGoodColorAndPosition(userSuite) {
     
     for (let i = 0; i < colors.length; i++) {
         if (randomSuite[i] === userSuite[i])
         goodColorGoodPlace++;
+        // alreadyFound[i] = userSuite[i]
+        // console.log(alreadyFound);
     }
     // console.log(`goodColorGoodPlace: ${goodColorGoodPlace}`);
     
@@ -67,7 +75,7 @@ function checkGoodColorAndPosition(userSuite) {
 function checkGoodColorBadPosition(userSuite) {
     for (let i = 0; i < colors.length; i++) {
         for (let j = 0; j < colors.length; j++) {
-            if (randomSuite[i] === userSuite[j])
+            if (randomSuite[i] === userSuite[j] && [i] != [j]  )
             goodColorBadPlace++;
         }
     }
@@ -361,6 +369,9 @@ function colorToTopBox(userArrayCopy) {
 
 const colorChooser = document.querySelectorAll(".colorChooser");
 
+// =================================
+// New Turn Function
+// =================================
 
 
 function newTurnGame() {
@@ -407,34 +418,90 @@ function newTurnGame() {
     
 }
 
+// =================================
+// MAIN EVENT : check victory / defeat / New Turn
+// =================================
 
-
-    colorChooser.forEach(colorChooser => {
+colorChooser.forEach(colorChooser => {
+    
+    colorChooser.addEventListener("click", function(){
         
-        colorChooser.addEventListener("click", function(){
-
-            // Victory Check
-            if(userSuite.length === 4) {
-
-                console.log(randomSuite);
-                console.log(userSuite);
-                // Victory !
-                if (userSuite.join()=== randomSuite.join()) {
-                    infoContent.textContent = "YOU WIN !";
-                    actualGame.style.display = "none";
-                    statRemainingMoves.style.display = "none";
-                    statTimeLeft.style.display = "none";
-                    gameTitle.classList.add("active");
-                    gameHeader.classList.add("active");
-                    gameSection.classList.add("active");
-                    infoContent.classList.add("active");
-
-                    clearInterval(timerInterval);
-                    
+        // Victory Check
+        if(userSuite.length === 4 && !userSuite.includes()) {
+            
+            console.log(randomSuite);
+            console.log(userSuite);
+            // Victory !
+            if (userSuite.join()=== randomSuite.join()) {
+                infoContent.textContent = "YOU WIN !";
+                actualGame.style.display = "none";
+                statRemainingMoves.style.display = "none";
+                statTimeLeft.style.display = "none";
+                gameTitle.classList.add("active");
+                gameHeader.classList.add("active");
+                gameSection.classList.add("active");
+                infoContent.classList.add("active");
+                playAgainBtn.style.display = "block"
+                clearInterval(timerInterval);
+                
                 // Or...NOT YET
-                } else {
-                    newTurnGame();
-                }
+                
+                
+            } else if(remainingMoves === 1){
+                infoContent.textContent = "YOU LOST !";
+                actualGame.style.display = "none";
+                statRemainingMoves.style.display = "none";
+                statTimeLeft.style.display = "none";
+                gameTitle.classList.add("active");
+                gameHeader.classList.add("active");
+                gameSection.classList.add("active");
+                infoContent.classList.add("active");    
+                playAgainBtn.classList.add("active");
+                
+            } else {
+                newTurnGame();
             }
-        })
-    });
+        }
+    })
+});
+
+
+// =================================
+// Restart Game function
+// =================================
+
+function restartGame() {
+    
+    randomSuite = [];
+    userSuite = [];
+    
+    goodColorGoodPlace = 0;
+    goodColorBadPlace = 0;
+    
+    remainingMoves = 10;
+    seconds = 20;
+    
+    actualGame.style.display = "flex";
+    statRemainingMoves.style.display = "flex";
+    statTimeLeft.style.display = "flex";
+    gameTitle.classList.remove("active");
+    gameHeader.classList.remove("active");
+    gameSection.classList.remove("active");
+    infoContent.classList.remove("active");    
+    playAgainBtn.classList.remove("active");
+    lastTurnDiv.style.display = "none";
+    clearColorsFromBox(gameLaneBoxOne)
+    clearColorsFromBox(gameLaneBoxTwo)
+    clearColorsFromBox(gameLaneBoxThree)
+    clearColorsFromBox(gameLaneBoxFour)
+
+    clickAutorised = true;
+
+    startGame()
+}
+
+playAgainBtn.addEventListener("click", function(){
+    playAgainBtn.style.display = "none";
+    restartGame()
+    
+})
