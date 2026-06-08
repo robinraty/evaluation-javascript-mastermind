@@ -1,0 +1,96 @@
+/* =========================
+RESET / BASE
+========================= */
+
+*, *::before, *::after {
+    box-sizing: border-box; /* inclut padding + border dans width/height */
+}
+
+html {
+    font-size: 100%; /* définit la taille de base du texte du site sur 100% = valeur par défaut du navigateur. Souvent 1rem (16px) */
+    -webkit-text-size-adjust: 100%; /* évite zoom automatique sur iOS */
+}
+
+body {
+    margin: 0; /* enlève marge par défaut du navigateur */
+    min-height: 100vh; /* hauteur minimale = écran entier */
+    line-height: 1.5; /* espace vertical entre les lignes de texte */
+    font-family: "Quicksand", sans-serif;
+    background-color: rgb(3, 0, 34);
+}
+
+img, picture, video, canvas, svg {
+    display: block; /* enlève les espaces inline (surtout images) */
+    max-width: 100%; /* empêche de dépasser du parent */
+}
+
+input, button, textarea, select {
+    font: inherit; /* récupère font-family, size, etc du parent */
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    margin-top: 0; /* enlève les marges haut par défaut */
+    overflow-wrap: break-word; /* casse les mots trop longs */
+}
+
+a {
+    color: inherit; /* prend la couleur du parent */
+    text-decoration: none; /* enlève le soulignement */
+}
+
+ul, ol {
+    margin: 0; /* enlève marges par défaut */
+    padding: 0; /* enlève padding gauche */
+    list-style: none; /* enlève les puces / numéros */
+}
+
+/* =========================
+STYLES PAR DÉFAUT = MOBILE
+(< 640px)
+========================= */
+
+
+.wrapper {
+    margin-inline: auto; /* centre horizontalement */
+    max-width: 1400px;
+    width: 100%;
+    padding-inline: 1rem; /* Pour avoir un peu d'espace sur les cotes*/ 
+    /*width: min(100% - 2rem, 1400px);*/ /* largeur fluide avec max à 1400px */
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+/* =========================
+BREAKPOINTS STANDARDS
+========================= */
+
+/* ≥ 640px : grands téléphones */
+@media (min-width: 640px) { /* applique styles si écran ≥ 640px */
+    
+}
+
+/* ≥ 768px : tablettes */
+@media (min-width: 768px) { /* breakpoint tablette classique */
+    
+}
+
+/* ≥ 1024px : laptop */
+@media (min-width: 1024px) { /* passage layout desktop */
+    
+}
+
+/* ≥ 1280px : desktop large */
+@media (min-width: 1280px) { /* écrans larges */
+    
+}
+
+/* ≥ 1536px : très grands écrans */
+@media (min-width: 1536px) { /* ultra wide */
+    
+}
+
+
