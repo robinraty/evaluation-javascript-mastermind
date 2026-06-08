@@ -13,12 +13,21 @@ let goodColorBadPlace = 0;
 
 let remainingMoves = 10;
 let seconds = 20;
-const statTimeLeft = document.querySelector(".statTimeLeft")
+const statRemainingMoves = document.querySelector(".statRemainingMoves");
+const statTimeLeft = document.querySelector(".statTimeLeft");
 
 const startBtn = document.querySelector(".startBtn");
-const infoContent = document.querySelector(".infoContent")
+const infoContent = document.querySelector(".infoContent");
 
 let clickAutorised = false;
+
+const lastTurnDiv = document.querySelector(".lastTurnDiv");
+
+const actualGame = document.querySelector(".actualGame");
+const gameHeader = document.querySelector(".gameHeader");
+
+const gameTitle = document.querySelector(".gameTitle");
+const gameSection = document.querySelector(".gameSection");
 
 
 // =================================
@@ -30,25 +39,24 @@ let clickAutorised = false;
 function randomSuiteCreator() {
     
     for (let i = 0; i < colors.length; i++) {
-        const randomIndex = Math.floor(Math.random() * 4)
-        console.log(randomIndex);
-        
+        const randomIndex = Math.floor(Math.random() * 4)        
         randomSuite.push(colors[randomIndex])
     }
-    console.log(`random suite : ${randomSuite}`);
+    console.log(`random suite :`);
+    console.log(randomSuite);
 }
 
 // =================================
 // function checkGoodColorAndPosition : fonction de comparaison bonne couleur + bonne position
 // =================================
 
-function checkGoodColorAndPosition() {
+function checkGoodColorAndPosition(userSuite) {
     
     for (let i = 0; i < colors.length; i++) {
         if (randomSuite[i] === userSuite[i])
         goodColorGoodPlace++;
-        console.log(goodColorGoodPlace);
     }
+    // console.log(`goodColorGoodPlace: ${goodColorGoodPlace}`);
     
 }
 
@@ -56,14 +64,15 @@ function checkGoodColorAndPosition() {
 // function checkGoodColorBadPosition : fonction de comparaison bonne couleur + mauvaise position
 // =================================
 
-function checkGoodColorBadPosition() {
+function checkGoodColorBadPosition(userSuite) {
     for (let i = 0; i < colors.length; i++) {
         for (let j = 0; j < colors.length; j++) {
             if (randomSuite[i] === userSuite[j])
             goodColorBadPlace++;
-            console.log(goodColorBadPlace);
         }
     }
+    // console.log(`goodColorBadPlace : ${goodColorBadPlace}`);
+    
 }
 
 // =================================
@@ -96,6 +105,7 @@ function clearTitleColor() {
 
 function gameTimer() {
     
+    
     timerInterval = setInterval(function () {
         seconds--;
         
@@ -106,6 +116,12 @@ function gameTimer() {
         String(minutes).padStart(2, "0") +
         ":" +
         String(remainingSeconds).padStart(2, "0");
+        
+        if (seconds === 0) {
+            clearInterval(timerInterval);
+            newTurnGame();    
+            
+        }
         
     }, 1000);
 }
@@ -145,6 +161,16 @@ const colorChooserTwo = document.querySelectorAll(".colorChooserTwo");
 const colorChooserThree = document.querySelectorAll(".colorChooserThree");
 const colorChooserFour = document.querySelectorAll(".colorChooserFour");
 
+const lastTurnBoxOne = document.querySelector(".lastTurnBoxOne");
+const lastTurnBoxTwo = document.querySelector(".lastTurnBoxTwo");
+const lastTurnBoxThree = document.querySelector(".lastTurnBoxThree");
+const lastTurnBoxFour = document.querySelector(".lastTurnBoxFour");
+
+
+
+
+
+
 
 function clearColorsFromBox(x) {
     x.classList.remove("redColorChooser");
@@ -179,7 +205,7 @@ colorChooserOne.forEach(colorChooser => {
                 gameLaneBoxOne.classList.add("yellowColorChooser")
                 userSuite[0] = "yellow"
             }
-            console.log(userSuite);
+            // console.log(userSuite);
             
             
         }
@@ -213,7 +239,7 @@ colorChooserTwo.forEach(colorChooser => {
                 gameLaneBoxTwo.classList.add("yellowColorChooser")
                 userSuite[1] = "yellow"
             }
-            console.log(userSuite);
+            // console.log(userSuite);
         }
     })
 });
@@ -243,7 +269,7 @@ colorChooserThree.forEach(colorChooser => {
                 gameLaneBoxThree.classList.add("yellowColorChooser")
                 userSuite[2] = "yellow"
             }
-            console.log(userSuite);
+            // console.log(userSuite);
         }
     })
 });
@@ -273,29 +299,142 @@ colorChooserFour.forEach(colorChooser => {
                 gameLaneBoxFour.classList.add("yellowColorChooser")
                 userSuite[3] = "yellow"
             }
-            console.log(userSuite);
+            // console.log(userSuite);
         }
     })
 });
 
 
-// Function pour stopper un turn quand User a choisi 4 couleurs.
+
+// Colors to variable 
+
+let redBg = "#dc143c";
+let greenBg = "#247724";
+let blueBg = "#3535c9";
+let yellowBg = "#c0c032";
+
+function colorToTopBox(userArrayCopy) {
+    // Colors Box One 
+    if (userArrayCopy[0] === "red") {
+        lastTurnBoxOne.style.background = redBg;
+    } else if (userArrayCopy[0] === "green") {
+        lastTurnBoxOne.style.background = greenBg;
+    } else if (userArrayCopy[0] === "blue") {
+        lastTurnBoxOne.style.background = blueBg;
+    } else if (userArrayCopy[0] === "yellow") {
+        lastTurnBoxOne.style.background = yellowBg;
+    } 
+    // Colors Box Two 
+    if (userArrayCopy[1] === "red") {
+        lastTurnBoxTwo.style.background = redBg;
+    } else if (userArrayCopy[1] === "green") {
+        lastTurnBoxTwo.style.background = greenBg;
+    } else if (userArrayCopy[1] === "blue") {
+        lastTurnBoxTwo.style.background = blueBg;
+    } else if (userArrayCopy[1] === "yellow") {
+        lastTurnBoxTwo.style.background = yellowBg;
+    } 
+    // Colors Box Three 
+    if (userArrayCopy[2] === "red") {
+        lastTurnBoxThree.style.background = redBg;
+    } else if (userArrayCopy[2] === "green") {
+        lastTurnBoxThree.style.background = greenBg;
+    } else if (userArrayCopy[2] === "blue") {
+        lastTurnBoxThree.style.background = blueBg;
+    } else if (userArrayCopy[2] === "yellow") {
+        lastTurnBoxThree.style.background = yellowBg;
+    } 
+    // Colors Box Four 
+    if (userArrayCopy[3] === "red") {
+        lastTurnBoxFour.style.background = redBg;
+    } else if (userArrayCopy[3] === "green") {
+        lastTurnBoxFour.style.background = greenBg;
+    } else if (userArrayCopy[3] === "blue") {
+        lastTurnBoxFour.style.background = blueBg;
+    } else if (userArrayCopy[3] === "yellow") {
+        lastTurnBoxFour.style.background = yellowBg;
+    } 
+    
+}
+
+// Function pour stopper un turn quand User a choisi 4 couleurs et relancer un tour ! 
 
 const colorChooser = document.querySelectorAll(".colorChooser");
 
-colorChooser.forEach(colorChooser => {
+
+
+function newTurnGame() {
     
-    colorChooser.addEventListener("click", function(){
+    
+    clearInterval(timerInterval);
+    seconds = 20;
+    statTimeLeft.textContent = `00:${seconds}`;
+    
+    gameTimer();
+    
+    remainingMoves--;
+    statRemainingMoves.textContent = `Remaining Moves : ${remainingMoves}`
+    
+    
+    let userArrayCopy = [...userSuite];
+    userSuite.length = 0;
+    console.log(userArrayCopy);
+    
+    checkGoodColorAndPosition(userArrayCopy);
+    
+    checkGoodColorBadPosition(userArrayCopy);
+    
+    lastTurnDiv.style.display = "flex";
+    
+    colorToTopBox(userArrayCopy)
+    
+    console.log(goodColorGoodPlace);
+    console.log(goodColorBadPlace);
+    
+    infoContent.innerHTML = `Color(s) well placed : ${goodColorGoodPlace} <br> Good color(s) at the wrong spot : ${goodColorBadPlace}`
+    
+    
+    goodColorGoodPlace = 0;
+    goodColorBadPlace = 0;
+    
+    clearColorsFromBox(gameLaneBoxOne)
+    clearColorsFromBox(gameLaneBoxTwo)
+    clearColorsFromBox(gameLaneBoxThree)
+    clearColorsFromBox(gameLaneBoxFour)
+    
+    
+    
+    
+}
+
+
+
+    colorChooser.forEach(colorChooser => {
         
-        if (userSuite.length === 4){
-            console.log("helloooo");
-            
-            checkGoodColorAndPosition();
-            
-            checkGoodColorBadPosition();
-            
-        }
-    })
-    
-    
-});
+        colorChooser.addEventListener("click", function(){
+
+            // Victory Check
+            if(userSuite.length === 4) {
+
+                console.log(randomSuite);
+                console.log(userSuite);
+                // Victory !
+                if (userSuite.join()=== randomSuite.join()) {
+                    infoContent.textContent = "YOU WIN !";
+                    actualGame.style.display = "none";
+                    statRemainingMoves.style.display = "none";
+                    statTimeLeft.style.display = "none";
+                    gameTitle.classList.add("active");
+                    gameHeader.classList.add("active");
+                    gameSection.classList.add("active");
+                    infoContent.classList.add("active");
+
+                    clearInterval(timerInterval);
+                    
+                // Or...NOT YET
+                } else {
+                    newTurnGame();
+                }
+            }
+        })
+    });

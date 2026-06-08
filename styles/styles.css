@@ -69,7 +69,7 @@ STYLES PAR DÉFAUT = MOBILE
     flex-direction: column;
     align-items: center;
     height: 100vh;
-    border: 1px solid white;
+    border: 1px solid rgb(255, 255, 255);
     width: 100%;
     border-radius: 10px;
 }
@@ -80,7 +80,7 @@ STYLES PAR DÉFAUT = MOBILE
     width: 800px;
     margin-top: 80px;
     align-items: center;
-    border: 1px solid white;
+    border: 2.5px solid crimson;
     border-radius: 10px;
 }
 
@@ -132,7 +132,7 @@ STYLES PAR DÉFAUT = MOBILE
     height: 350px;
     margin-top: 40px;
     align-items: center;
-    border: 1px solid white;
+    border: 2px solid #3535c9;
     border-radius: 10px;
     padding: 40px;
     gap: 40px;
@@ -143,8 +143,25 @@ STYLES PAR DÉFAUT = MOBILE
     gap: 50px;
 }
 
+.lastTurnDiv {
+
+    display: flex;
+    gap: 50px;
+    display: none;
+
+}
+
+.lastTurnBox {
+    background-color: rgb(187, 187, 187);
+    width: 160px;
+    height: 80px;
+    border-radius: 10px;
+}
+
+
+
 .gameLaneBox {
-    background-color: white;
+    background-color: rgb(187, 187, 187);
     width: 160px;
     height: 80px;
     border-radius: 10px;
@@ -171,19 +188,19 @@ STYLES PAR DÉFAUT = MOBILE
 }
 
 .redColorChooser {
-    background-color:crimson; ;
+    background-color:#dc143c;
 }
 
 .greenColorChooser {
-    background-color:  rgb(36, 119, 36);;
+    background-color:  #247724;
 }
 
 .blueColorChooser {
-    background-color: rgb(53, 53, 201);
+    background-color: #3535c9;
 }
 
 .yellowColorChooser {
-    background-color: rgb(192, 192, 50);
+    background-color: #c0c032;
 }
 
 
@@ -205,9 +222,6 @@ STYLES PAR DÉFAUT = MOBILE
 .yellow {
     color: rgb(192, 192, 50);
 }
-
-
-
 
 
 
@@ -234,7 +248,26 @@ STYLES PAR DÉFAUT = MOBILE
 }
 
 
+/* WIN ! */
 
+.gameTitle.active {
+    font-size: 80px;
+}
+
+.gameHeader.active {
+    border: 1px solid rgb(3, 0, 34);
+    width: 1400px;
+    margin-top: 180px;
+}
+
+.gameSection.active {
+    border: none;
+}
+
+.infoContent.active {
+    font-size: 30px;
+    font-weight: bold;
+}
 /* =========================
 BREAKPOINTS STANDARDS
 ========================= */
