@@ -103,12 +103,25 @@ STYLES PAR DÉFAUT = MOBILE
 }
 
 .stat {
- color: white;
- font-weight: 500;
- font-size: 20px;
+    color: white;
+    font-weight: 500;
+    font-size: 20px;
 }
 
+.startBtn {
+    color: white;
+    font-size: 40px;
+    margin-top: 40px;
+    border-radius: 999px;
+    border: 2px solid crimson;
+    padding: 10px 40px;
+    cursor: pointer;
+}
 
+.startBtn:hover {
+    transform: scale(1.1);
+    transform: translateY(-2px)
+}
 
 /* GAME */
 
@@ -116,7 +129,7 @@ STYLES PAR DÉFAUT = MOBILE
     display: flex;
     flex-direction: column;
     width: 1000px;
-    height: 450px;
+    height: 350px;
     margin-top: 40px;
     align-items: center;
     border: 1px solid white;
@@ -146,11 +159,11 @@ STYLES PAR DÉFAUT = MOBILE
 .colorChoosers {
     display: flex;
     flex-wrap: wrap;
-
+    
 }
 
 .colorChooser {
-
+    
     width: 40px;
     height: 40px;
     border-radius: 10px;
@@ -198,10 +211,27 @@ STYLES PAR DÉFAUT = MOBILE
 
 
 
+/* TUTO SECTION */
 
+.infoSection {
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    height: 100px;
+    margin-top: 40px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 40px;
+    gap: 40px;
+}
 
-
-
+.infoContent {
+    color: white;
+    text-align: center;
+    font-weight: 500;
+    font-size: 20px;
+}
 
 
 
