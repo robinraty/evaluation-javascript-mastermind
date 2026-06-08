@@ -52,7 +52,7 @@ STYLES PAR DÉFAUT = MOBILE
 
 .wrapper {
     margin-inline: auto; /* centre horizontalement */
-    max-width: 1400px;
+    max-width: 1500px;
     width: 100%;
     padding-inline: 1rem; /* Pour avoir un peu d'espace sur les cotes*/ 
     /*width: min(100% - 2rem, 1400px);*/ /* largeur fluide avec max à 1400px */
@@ -62,6 +62,147 @@ STYLES PAR DÉFAUT = MOBILE
     align-items: center;
     flex-direction: column;
 }
+
+
+.gameSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    border: 1px solid white;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.gameHeader {
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    margin-top: 80px;
+    align-items: center;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.gameTitle {
+    color: white;
+    font-size: 50px;
+    font-family: "Zen Dots", sans-serif;
+    margin-top: 16px;
+}
+
+.gameStats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    width: 80%;
+    height: 60px;
+    border-radius: 10px;
+    padding-bottom: 20px;
+}
+
+.stat {
+ color: white;
+ font-weight: 500;
+ font-size: 20px;
+}
+
+
+
+/* GAME */
+
+.actualGame {
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    height: 450px;
+    margin-top: 40px;
+    align-items: center;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 40px;
+    gap: 40px;
+}
+
+.gameLane {
+    display: flex;
+    gap: 50px;
+}
+
+.gameLaneBox {
+    background-color: white;
+    width: 160px;
+    height: 80px;
+    border-radius: 10px;
+}
+
+.colorBoxSelect {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.colorChoosers {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.colorChooser {
+
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.redColorChooser {
+    background-color:crimson; ;
+}
+
+.greenColorChooser {
+    background-color:  rgb(36, 119, 36);;
+}
+
+.blueColorChooser {
+    background-color: rgb(53, 53, 201);
+}
+
+.yellowColorChooser {
+    background-color: rgb(192, 192, 50);
+}
+
+
+
+
+
+.red {
+    color: crimson;
+}
+
+.green {
+    color: rgb(36, 119, 36);
+}
+
+.blue {
+    color: rgb(53, 53, 201);
+}
+
+.yellow {
+    color: rgb(192, 192, 50);
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* =========================
